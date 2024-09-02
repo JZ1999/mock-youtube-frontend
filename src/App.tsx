@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {AuthProvider} from './context/AuthContext';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/Home';
 
-function App() {
+
+const PrivateRoute: React.FC<{ element: JSX.Element }> = ({ element }) => {
+  const auth = useAuth();
+
+  return auth?.authenticated ? element : <Navigate to="/login" replace />;
+};
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<PrivateRoute element={<HomePage />} />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
-
-export default App;
