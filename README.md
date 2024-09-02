@@ -15,8 +15,8 @@ This project is a React.js application written in TypeScript that connects to a 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/JZ1999/mock-youtube-frontend.git
+   cd mock-youtube-frontend
 
 2. **Install the dependencies:**
 
@@ -30,8 +30,13 @@ This project is a React.js application written in TypeScript that connects to a 
 
 ### Running the Project
 
-```bash
-npm start
+1. **With NPM**
+    ```bash
+    npm start
+
+2. **With Yarn**
+    ```bash
+    yarn start
 
 ### Running the Linter
 
